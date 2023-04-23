@@ -48,7 +48,7 @@ services:
       - monitor
 
   cadvisor:
-    image: google/cadvisor:latest
+    image: lagoudocker/cadvisor:v0.37.0
     container_name: cadvisor
     hostname: cadvisor
     restart: always

@@ -22,11 +22,28 @@ public class AustinResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     private static final String RETURN_CLASS = "BasicResultVO";
 
+    /**
+     * 加了注解AustinResult，会被切入
+     * @param methodParameter the return type
+     * @param aClass the selected converter type
+     * @return
+     */
     @Override
     public boolean supports(MethodParameter methodParameter, Class aClass) {
         return methodParameter.getContainingClass().isAnnotationPresent(AustinResult.class) || methodParameter.hasMethodAnnotation(AustinResult.class);
     }
 
+    /**
+     * 被切面 如果返回值是BasicResultVO，直接返回
+     * 如果不是，包装一层再返回
+     * @param data the body to be written
+     * @param methodParameter the return type of the controller method
+     * @param mediaType the content type selected through content negotiation
+     * @param aClass the converter type selected to write to the response
+     * @param serverHttpRequest the current request
+     * @param serverHttpResponse the current response
+     * @return
+     */
     @Override
     public Object beforeBodyWrite(Object data, MethodParameter methodParameter, MediaType mediaType, Class aClass,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {

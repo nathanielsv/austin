@@ -93,7 +93,7 @@ public class AustinAspect {
         });
         logVo.setArgs(args.toArray());
         logVo.setProduct("austin");
-        logVo.setPath(methodSignature.getDeclaringTypeName() + "." + methodSignature.getMethod().getName());
+        logVo.setPath(methodSignature.getDeclaringTypeName() + "." + methodSignature.getMethod().getName()); //类名.方法名
         logVo.setReferer(request.getHeader("referer"));
         logVo.setRemoteAddr(request.getRemoteAddr());
         logVo.setUserAgent(request.getHeader("user-agent"));
